@@ -5,12 +5,7 @@
     "thumbnail": "https://placehold.co/800x450/111827/5B98D4?text=STED+Reconstruction",
     "summary": "End-to-end acquisition and reconstruction pipeline for STED microscopy. Reads raw detector signals, handles photon counting and time-gating, and assembles super-resolution images in real time during acquisition.",
     "tags": ["Python", "C++", "Signal Processing", "STED"],
-    "featured": true,
-    "specs": [
-      { "label": "Resolution", "value": "<50 nm" },
-      { "label": "Throughput", "value": "real-time" },
-      { "label": "Detectors", "value": "APD / hybrid" }
-    ]
+    "featured": true
   },
   {
     "title": "FPGA Scan & Detection Controller",
@@ -18,12 +13,7 @@
     "thumbnail": "https://placehold.co/640x360/111827/D49B3A?text=FPGA+Controller",
     "summary": "Real-time FPGA control system for microscope scanning paths, laser pulse detection, and beam enable logic. Sub-microsecond timing for synchronizing excitation and depletion lasers.",
     "tags": ["VHDL", "FPGA", "Timing", "Digital Design"],
-    "featured": false,
-    "specs": [
-      { "label": "Clock", "value": "200 MHz" },
-      { "label": "Jitter", "value": "<500 ps" },
-      { "label": "Channels", "value": "4 laser + 2 det" }
-    ]
+    "featured": false
   },
   {
     "title": "Custom Opto-Mechanical Assemblies",
@@ -31,11 +21,7 @@
     "thumbnail": "https://placehold.co/640x360/111827/B07CC6?text=Opto-Mechanics",
     "summary": "Precision optical mounts, beam path assemblies, and mechanical fixtures designed for custom STED and confocal microscope setups. Toleranced for thermal stability and vibration isolation.",
     "tags": ["CAD", "Optics", "Mechanical Design", "Zemax"],
-    "featured": false,
-    "specs": [
-      { "label": "Tolerance", "value": "±10 µm" },
-      { "label": "Thermal drift", "value": "<1 µm/°C" }
-    ]
+    "featured": false
   },
   {
     "title": "Scanning Path Engine",
@@ -43,10 +29,6 @@
     "thumbnail": "https://placehold.co/640x360/111827/6BCB77?text=Scan+Patterns",
     "summary": "Generates and optimizes galvo mirror scan patterns — raster, spiral, and adaptive ROI modes — driven by the FPGA controller with real-time position feedback and dose management.",
     "tags": ["FPGA", "Control Systems", "Galvo", "Python"],
-    "featured": false,
-    "specs": [
-      { "label": "Modes", "value": "raster / spiral / ROI" },
-      { "label": "Update rate", "value": "1 MHz" }
-    ]
+    "featured": false
   }
 ]
