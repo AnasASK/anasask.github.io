@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name — Portfolio & Blog</title>
+  <meta name="description" content="Portfolio and blog of Your Name. Projects, articles, and experiments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg:        #FDFCFA;
+      --surface:   #F0EDE7;
+      --ink:       #1B1B1F;
+      --ink-muted: #6B7280;
+      --accent:    #2D5F8A;
+      --highlight:  #B8860B;
+      --border:    #D8D4CC;
+      --card-shadow: 0 1px 3px rgba(27,27,31,.06), 0 6px 16px rgba(27,27,31,.04);
+      --radius:    6px;
+      --display:   'Space Grotesk', system-ui, sans-serif;
+      --body:      'Source Serif 4', Georgia, serif;
+      --mono:      'JetBrains Mono', 'Fira Code', monospace;
+      --max-w:     1120px;
+      --gutter:    clamp(1.25rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--highlight); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ─────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,252,250,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: .85rem var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: -.02em;
+    }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--display);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--highlight);
+      transform: scaleX(0);
+      transition: transform .25s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ────────────────────────────────── */
+    .hero {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(3rem,8vw,6rem) var(--gutter) clamp(2rem,5vw,4rem);
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--highlight);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .hero-sub {
+      max-width: 560px;
+      font-size: 1.15rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+    .hero-links {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-links a {
+      font-family: var(--display);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      padding: .55rem 1.2rem;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      color: var(--ink-muted);
+      transition: all .2s;
+    }
+    .hero-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(45,95,138,.04);
+    }
+
+    /* ── SECTION SHARED ──────────────────────── */
+    .section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: .75rem;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .section-header h2 {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+    .section-header .section-count {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--ink-muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── PORTFOLIO ────────────────────────────── */
+    .portfolio-section { padding-top: 1rem; padding-bottom: clamp(3rem,6vw,5rem); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow .3s, border-color .3s, transform .3s;
+    }
+    .project-card:hover {
+      box-shadow: var(--card-shadow);
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .project-body { padding: 1.25rem 1.35rem 1.35rem; }
+    .project-body h3 {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      margin-bottom: .35rem;
+    }
+    .project-body h3 a { color: var(--ink); }
+    .project-body h3 a:hover { color: var(--accent); }
+    .project-desc {
+      font-size: .92rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-bottom: .85rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      padding: .2rem .55rem;
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--ink-muted);
+    }
+
+    /* featured card spans two columns on wider screens */
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+    }
+    .project-card.featured .project-thumb {
+      aspect-ratio: auto;
+      height: 100%;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+    }
+    .project-card.featured .project-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 2.25rem;
+    }
+    .project-card.featured .project-body h3 { font-size: 1.3rem; }
+    .project-card.featured .project-desc { font-size: 1rem; }
+
+    /* ── BLOG ─────────────────────────────────── */
+    .blog-section { padding-top: 1rem; padding-bottom: clamp(3rem,8vw,6rem); }
+
+    .blog-list { list-style: none; }
+    .blog-entry {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background .2s;
+    }
+    .blog-entry:first-child { border-top: 1px solid var(--border); }
+    .blog-entry:hover { background: rgba(240,237,231,.45); }
+
+    .blog-date {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--ink-muted);
+      padding-top: .25rem;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    .blog-content h3 {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      margin-bottom: .3rem;
+    }
+    .blog-content h3 a { color: var(--ink); }
+    .blog-content h3 a:hover { color: var(--accent); }
+    .blog-excerpt {
+      font-size: .9rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-bottom: .6rem;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .blog-meta .tag { font-size: .65rem; }
+    .read-time {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--ink-muted);
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    .site-footer {
+      border-top: 1.5px solid var(--ink);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2rem var(--gutter) 2.5rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-text {
+      font-family: var(--display);
+      font-size: .82rem;
+      color: var(--ink-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: var(--display);
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 700px) {
+      .project-card.featured {
+        grid-template-columns: 1fr;
+      }
+      .project-card.featured .project-thumb {
+        aspect-ratio: 16/9;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .blog-entry {
+        grid-template-columns: 1fr;
+        gap: .25rem;
+      }
+      .blog-date { padding-top: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: .78rem; }
+    }
+
+    /* ── REDUCED MOTION ──────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">yourname</a>
+      <ul class="nav-links">
+        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="mailto:you@email.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ -->
+  <header class="hero">
+    <p class="hero-eyebrow">developer &amp; writer</p>
+    <h1>Your Name</h1>
+    <p class="hero-sub">
+      I build things for the web and write about what I learn along the way.
+      Currently interested in systems design, creative tooling, and open source.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">Twitter</a>
+      <a href="/resume.pdf" target="_blank">Resume</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       PORTFOLIO
+       ═══════════════════════════════════════════ -->
+  <section id="portfolio" class="section portfolio-section">
+    <div class="section-header">
+      <h2>Selected Work</h2>
+      <span class="section-count">4 projects</span>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- FEATURED PROJECT — spans full width -->
+      <article class="project-card featured">
+        <!-- Replace src with your screenshot/image -->
+        <img class="project-thumb"
+             src="https://placehold.co/800x450/E8E4DC/6B7280?text=Project+Screenshot"
+             alt="Screenshot of Project Alpha">
+        <div class="project-body">
+          <h3><a href="https://github.com/yourusername/project-alpha">Project Alpha</a></h3>
+          <p class="project-desc">
+            A real-time collaborative editor built from scratch. Handles
+            conflict resolution with CRDTs and syncs across devices with
+            sub-50ms latency.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Rust</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">CRDTs</span>
+            <span class="tag">React</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2 -->
+      <article class="project-card">
+        <img class="project-thumb"
+             src="https://placehold.co/640x360/E8E4DC/6B7280?text=CLI+Tool"
+             alt="Screenshot of devtool CLI">
+        <div class="project-body">
+          <h3><a href="#">devtool</a></h3>
+          <p class="project-desc">
+            A composable CLI toolkit for automating local dev environments.
+            Spins up databases, mocks APIs, seeds data — one command.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Go</span>
+            <span class="tag">Docker</span>
+            <span class="tag">CLI</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3 -->
+      <article class="project-card">
+        <img class="project-thumb"
+             src="https://placehold.co/640x360/E8E4DC/6B7280?text=Data+Viz"
+             alt="Screenshot of chartsmith">
+        <div class="project-body">
+          <h3><a href="#">chartsmith</a></h3>
+          <p class="project-desc">
+            An open-source charting library focused on accessibility.
+            Screen-reader-friendly SVG charts with zero dependencies.
+          </p>
+          <div class="project-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">SVG</span>
+            <span class="tag">A11y</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4 -->
+      <article class="project-card">
+        <img class="project-thumb"
+             src="https://placehold.co/640x360/E8E4DC/6B7280?text=API+Service"
+             alt="Screenshot of mailpipe">
+        <div class="project-body">
+          <h3><a href="#">mailpipe</a></h3>
+          <p class="project-desc">
+            A lightweight email processing pipeline. Parses, classifies,
+            and routes inbound email using customizable rule chains.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Redis</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BLOG
+       ═══════════════════════════════════════════ -->
+  <section id="blog" class="section blog-section">
+    <div class="section-header">
+      <h2>Writing</h2>
+      <span class="section-count">5 articles</span>
+    </div>
+
+    <ul class="blog-list">
+
+      <li class="blog-entry">
+        <time class="blog-date" datetime="2026-07-12">Jul 12, 2026</time>
+        <div class="blog-content">
+          <h3><a href="/blog/designing-for-latency.html">Designing for latency: what I learned building a real-time editor</a></h3>
+          <p class="blog-excerpt">
+            Most advice about latency focuses on the server. But the
+            interesting problems live in the gap between what the user
+            expects and what the network can deliver.
+          </p>
+          <div class="blog-meta">
+            <span class="tag">systems</span>
+            <span class="tag">frontend</span>
+            <span class="read-time">8 min read</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="blog-entry">
+        <time class="blog-date" datetime="2026-05-28">May 28, 2026</time>
+        <div class="blog-content">
+          <h3><a href="/blog/go-error-handling.html">Error handling in Go doesn't have to hurt</a></h3>
+          <p class="blog-excerpt">
+            A practical guide to structuring errors in Go services so they
+            carry enough context to debug, without cluttering every function.
+          </p>
+          <div class="blog-meta">
+            <span class="tag">go</span>
+            <span class="tag">tutorial</span>
+            <span class="read-time">12 min read</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="blog-entry">
+        <time class="blog-date" datetime="2026-03-10">Mar 10, 2026</time>
+        <div class="blog-content">
+          <h3><a href="/blog/svg-accessibility.html">Making SVG charts screen-reader friendly</a></h3>
+          <p class="blog-excerpt">
+            Notes from building chartsmith: ARIA roles, focus management,
+            and the surprising amount of structure SVG needs to be usable.
+          </p>
+          <div class="blog-meta">
+            <span class="tag">a11y</span>
+            <span class="tag">svg</span>
+            <span class="read-time">6 min read</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="blog-entry">
+        <time class="blog-date" datetime="2025-12-01">Dec 1, 2025</time>
+        <div class="blog-content">
+          <h3><a href="/blog/docker-dev-environments.html">One-command dev environments with Docker and devtool</a></h3>
+          <p class="blog-excerpt">
+            How I stopped spending Friday afternoons debugging "works on
+            my machine" issues and built a tool that makes setup instant.
+          </p>
+          <div class="blog-meta">
+            <span class="tag">devops</span>
+            <span class="tag">tooling</span>
+            <span class="read-time">10 min read</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="blog-entry">
+        <time class="blog-date" datetime="2025-09-15">Sep 15, 2025</time>
+        <div class="blog-content">
+          <h3><a href="/blog/side-project-shipping.html">The art of shipping side projects</a></h3>
+          <p class="blog-excerpt">
+            Most side projects die in a drawer. Here's the checklist I use
+            to get from "this could be cool" to a public repo with docs.
+          </p>
+          <div class="blog-meta">
+            <span class="tag">process</span>
+            <span class="read-time">5 min read</span>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-text">&copy; 2026 Your Name</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:you@email.com">Email</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
