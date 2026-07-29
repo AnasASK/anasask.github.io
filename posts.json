@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Designing for latency: what I learned building a real-time editor",
+    "url": "/blog/designing-for-latency.html",
+    "date": "2026-07-12",
+    "excerpt": "Most advice about latency focuses on the server. But the interesting problems live in the gap between what the user expects and what the network can deliver.",
+    "tags": ["systems", "frontend"],
+    "minutes": 8
+  },
+  {
+    "title": "Error handling in Go doesn't have to hurt",
+    "url": "/blog/go-error-handling.html",
+    "date": "2026-05-28",
+    "excerpt": "A practical guide to structuring errors in Go services so they carry enough context to debug, without cluttering every function.",
+    "tags": ["go", "tutorial"],
+    "minutes": 12
+  },
+  {
+    "title": "Making SVG charts screen-reader friendly",
+    "url": "/blog/svg-accessibility.html",
+    "date": "2026-03-10",
+    "excerpt": "Notes from building chartsmith: ARIA roles, focus management, and the surprising amount of structure SVG needs to be usable.",
+    "tags": ["a11y", "svg"],
+    "minutes": 6
+  },
+  {
+    "title": "One-command dev environments with Docker and devtool",
+    "url": "/blog/docker-dev-environments.html",
+    "date": "2025-12-01",
+    "excerpt": "How I stopped spending Friday afternoons debugging 'works on my machine' issues and built a tool that makes setup instant.",
+    "tags": ["devops", "tooling"],
+    "minutes": 10
+  },
+  {
+    "title": "The art of shipping side projects",
+    "url": "/blog/side-project-shipping.html",
+    "date": "2025-09-15",
+    "excerpt": "Most side projects die in a drawer. Here's the checklist I use to get from 'this could be cool' to a public repo with docs.",
+    "tags": ["process"],
+    "minutes": 5
+  }
+]
