@@ -1,42 +1,42 @@
 [
   {
-    "title": "Designing for latency: what I learned building a real-time editor",
-    "url": "/blog/designing-for-latency.html",
+    "title": "How we synchronize two lasers with sub-nanosecond jitter on an FPGA",
+    "url": "/blog/fpga-laser-sync.html",
     "date": "2026-07-12",
-    "excerpt": "Most advice about latency focuses on the server. But the interesting problems live in the gap between what the user expects and what the network can deliver.",
-    "tags": ["systems", "frontend"],
-    "minutes": 8
-  },
-  {
-    "title": "Error handling in Go doesn't have to hurt",
-    "url": "/blog/go-error-handling.html",
-    "date": "2026-05-28",
-    "excerpt": "A practical guide to structuring errors in Go services so they carry enough context to debug, without cluttering every function.",
-    "tags": ["go", "tutorial"],
-    "minutes": 12
-  },
-  {
-    "title": "Making SVG charts screen-reader friendly",
-    "url": "/blog/svg-accessibility.html",
-    "date": "2026-03-10",
-    "excerpt": "Notes from building chartsmith: ARIA roles, focus management, and the surprising amount of structure SVG needs to be usable.",
-    "tags": ["a11y", "svg"],
-    "minutes": 6
-  },
-  {
-    "title": "One-command dev environments with Docker and devtool",
-    "url": "/blog/docker-dev-environments.html",
-    "date": "2025-12-01",
-    "excerpt": "How I stopped spending Friday afternoons debugging 'works on my machine' issues and built a tool that makes setup instant.",
-    "tags": ["devops", "tooling"],
+    "excerpt": "Getting excitation and depletion pulses to line up in a STED microscope is a timing problem that pushes FPGAs to their limits. Here's how we solved it.",
+    "tags": ["fpga", "sted"],
     "minutes": 10
   },
   {
-    "title": "The art of shipping side projects",
-    "url": "/blog/side-project-shipping.html",
+    "title": "From photon counts to pixels: building a STED image pipeline",
+    "url": "/blog/sted-image-pipeline.html",
+    "date": "2026-05-28",
+    "excerpt": "A walkthrough of the signal processing chain that turns raw detector pulses into a super-resolution image — and why every nanosecond of gating matters.",
+    "tags": ["signal processing", "imaging"],
+    "minutes": 12
+  },
+  {
+    "title": "Designing scan patterns that don't melt your sample",
+    "url": "/blog/scan-patterns.html",
+    "date": "2026-03-10",
+    "excerpt": "Raster scanning is simple but brutal on live cells. Spiral and adaptive ROI scans spread the dose better — here's how we generate them on the FPGA.",
+    "tags": ["optics", "fpga"],
+    "minutes": 8
+  },
+  {
+    "title": "Opto-mechanical design for people who learned CAD the hard way",
+    "url": "/blog/optomech-design.html",
+    "date": "2025-12-01",
+    "excerpt": "Lessons from designing custom optical mounts when commercial catalog parts almost fit but never quite do. Tolerances, thermal drift, and when to just machine it yourself.",
+    "tags": ["mechanical design", "optics"],
+    "minutes": 9
+  },
+  {
+    "title": "Why I moved our microscope control software to Python (and kept the fast parts in C++)",
+    "url": "/blog/python-cpp-microscopy.html",
     "date": "2025-09-15",
-    "excerpt": "Most side projects die in a drawer. Here's the checklist I use to get from 'this could be cool' to a public repo with docs.",
-    "tags": ["process"],
-    "minutes": 5
+    "excerpt": "Researchers want to tweak acquisition parameters without recompiling firmware. A hybrid architecture gave us the flexibility of Python with the speed we needed for real-time.",
+    "tags": ["python", "architecture"],
+    "minutes": 7
   }
 ]
