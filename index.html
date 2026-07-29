@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Portfolio & Blog</title>
-  <meta name="description" content="Portfolio and blog of Your Name. Projects, articles, and experiments.">
+  <title>Anas Khalil — Portfolio & Blog</title>
+  <meta name="description" content="Portfolio and blog of Anas Khalil. Projects, articles, and experiments.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -370,11 +370,11 @@
        ═══════════════════════════════════════════ -->
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">yourname</a>
+      <a href="#" class="nav-logo">Anas Khalil</a>
       <ul class="nav-links">
         <li><a href="#portfolio">Work</a></li>
         <li><a href="#blog">Blog</a></li>
-        <li><a href="mailto:you@email.com">Contact</a></li>
+        <li><a href="mailto:anas.khalil@outlook.com">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -383,16 +383,16 @@
        HERO
        ═══════════════════════════════════════════ -->
   <header class="hero">
-    <p class="hero-eyebrow">developer &amp; writer</p>
-    <h1>Your Name</h1>
+    <p class="hero-eyebrow">systems engineer · MPI-CBG</p>
+    <h1>Anas Khalil</h1>
     <p class="hero-sub">
-      I build things for the web and write about what I learn along the way.
-      Currently interested in systems design, creative tooling, and open source.
+      I design and build instrumentation for super-resolution microscopy — from
+      opto-mechanical hardware and FPGA control systems to the image reconstruction
+      software. MSc Computational Modeling &amp; Simulation, BA Mechanical Engineering.
     </p>
     <div class="hero-links">
-      <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/AnasASK" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/anas-k-564aaa104" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/resume.pdf" target="_blank">Resume</a>
     </div>
   </header>
@@ -408,81 +408,83 @@
 
     <div class="portfolio-grid">
 
-      <!-- FEATURED PROJECT — spans full width -->
+      <!-- FEATURED PROJECT — STED Image Reconstruction -->
       <article class="project-card featured">
-        <!-- Replace src with your screenshot/image -->
         <img class="project-thumb"
-             src="https://placehold.co/800x450/E8E4DC/6B7280?text=Project+Screenshot"
-             alt="Screenshot of Project Alpha">
+             src="https://placehold.co/800x450/E8E4DC/6B7280?text=STED+Image+Reconstruction"
+             alt="STED microscopy image reconstruction software">
         <div class="project-body">
-          <h3><a href="https://github.com/yourusername/project-alpha">Project Alpha</a></h3>
+          <h3><a href="#">STED Image Reconstruction Software</a></h3>
           <p class="project-desc">
-            A real-time collaborative editor built from scratch. Handles
-            conflict resolution with CRDTs and syncs across devices with
-            sub-50ms latency.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Rust</span>
-            <span class="tag">WebSocket</span>
-            <span class="tag">CRDTs</span>
-            <span class="tag">React</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJECT 2 -->
-      <article class="project-card">
-        <img class="project-thumb"
-             src="https://placehold.co/640x360/E8E4DC/6B7280?text=CLI+Tool"
-             alt="Screenshot of devtool CLI">
-        <div class="project-body">
-          <h3><a href="#">devtool</a></h3>
-          <p class="project-desc">
-            A composable CLI toolkit for automating local dev environments.
-            Spins up databases, mocks APIs, seeds data — one command.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Go</span>
-            <span class="tag">Docker</span>
-            <span class="tag">CLI</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJECT 3 -->
-      <article class="project-card">
-        <img class="project-thumb"
-             src="https://placehold.co/640x360/E8E4DC/6B7280?text=Data+Viz"
-             alt="Screenshot of chartsmith">
-        <div class="project-body">
-          <h3><a href="#">chartsmith</a></h3>
-          <p class="project-desc">
-            An open-source charting library focused on accessibility.
-            Screen-reader-friendly SVG charts with zero dependencies.
-          </p>
-          <div class="project-tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">SVG</span>
-            <span class="tag">A11y</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJECT 4 -->
-      <article class="project-card">
-        <img class="project-thumb"
-             src="https://placehold.co/640x360/E8E4DC/6B7280?text=API+Service"
-             alt="Screenshot of mailpipe">
-        <div class="project-body">
-          <h3><a href="#">mailpipe</a></h3>
-          <p class="project-desc">
-            A lightweight email processing pipeline. Parses, classifies,
-            and routes inbound email using customizable rule chains.
+            End-to-end acquisition and reconstruction pipeline for STED microscopy.
+            Reads raw detector signals, handles photon counting, and assembles
+            super-resolution images in real time during acquisition.
           </p>
           <div class="project-tags">
             <span class="tag">Python</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">Redis</span>
+            <span class="tag">C++</span>
+            <span class="tag">Signal Processing</span>
+            <span class="tag">STED</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2 — FPGA Control System -->
+      <article class="project-card">
+        <img class="project-thumb"
+             src="https://placehold.co/640x360/E8E4DC/6B7280?text=FPGA+Control"
+             alt="FPGA-based microscope control system">
+        <div class="project-body">
+          <h3><a href="#">FPGA Scan &amp; Detection Controller</a></h3>
+          <p class="project-desc">
+            Real-time FPGA control system for microscope scanning paths,
+            laser pulse detection, and beam enable logic. Sub-microsecond
+            timing for synchronizing excitation and depletion lasers.
+          </p>
+          <div class="project-tags">
+            <span class="tag">VHDL</span>
+            <span class="tag">FPGA</span>
+            <span class="tag">Timing</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3 — Opto-Mechanical Design -->
+      <article class="project-card">
+        <img class="project-thumb"
+             src="https://placehold.co/640x360/E8E4DC/6B7280?text=Opto-Mechanics"
+             alt="Custom opto-mechanical assemblies">
+        <div class="project-body">
+          <h3><a href="#">Custom Opto-Mechanical Assemblies</a></h3>
+          <p class="project-desc">
+            Designed and built precision optical mounts, beam paths, and
+            mechanical fixtures for custom STED and confocal microscope
+            setups at MPI-CBG.
+          </p>
+          <div class="project-tags">
+            <span class="tag">CAD</span>
+            <span class="tag">Optics</span>
+            <span class="tag">Mechanical Design</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4 — Scanning Path Engine -->
+      <article class="project-card">
+        <img class="project-thumb"
+             src="https://placehold.co/640x360/E8E4DC/6B7280?text=Scan+Engine"
+             alt="Scanning path generation engine">
+        <div class="project-body">
+          <h3><a href="#">Scanning Path Engine</a></h3>
+          <p class="project-desc">
+            Generates and optimizes galvo mirror scan patterns —
+            raster, spiral, and adaptive ROI modes — driven by the
+            FPGA controller with real-time position feedback.
+          </p>
+          <div class="project-tags">
+            <span class="tag">FPGA</span>
+            <span class="tag">Control Systems</span>
+            <span class="tag">Galvo</span>
           </div>
         </div>
       </article>
@@ -549,10 +551,10 @@
        ═══════════════════════════════════════════ -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <span class="footer-text">&copy; 2026 Your Name</span>
+      <span class="footer-text">&copy; 2026 Anas Khalil</span>
       <ul class="footer-links">
-        <li><a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="mailto:you@email.com">Email</a></li>
+        <li><a href="https://github.com/AnasASK" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:anas.khalil@outlook.com">Email</a></li>
         <li><a href="/rss.xml">RSS</a></li>
       </ul>
     </div>
