@@ -1,4 +1,12 @@
 [
+   {
+  "title": "Laser Scanning Path Engine",
+  "url": "/projects/laser-scanning-path-engine.html",
+  "thumbnail": "https://placehold.co/640x360/111827/6BCB77?text=Scan+Patterns",
+  "summary": "FPGA-based scan engine that drives galvo mirrors and a piezo stage for laser scanning microscopy. Computes kinematically correct raster trajectories in real time, with uni/bidirectional scanning, XY/XZ/YZ/XYZ planes, configurable laser line patterns, and 20-bit DAC output.",
+  "tags": ["FPGA", "Motion Control", "Laser Scanning", "DAC"],
+  "featured": true
+},
   {
     "title": "STED Image Reconstruction Software",
     "url": "/projects/sted-image-reconstruction.html",
@@ -22,13 +30,6 @@
     "summary": "Precision optical mounts, beam path assemblies, and mechanical fixtures designed for custom STED and confocal microscope setups. Toleranced for thermal stability and vibration isolation.",
     "tags": ["CAD", "Optics", "Mechanical Design", "Zemax"],
     "featured": false
-  },
- {
-  "title": "Laser Scanning Path Engine",
-  "url": "/projects/laser-scanning-path-engine.html",
-  "thumbnail": "https://placehold.co/640x360/111827/6BCB77?text=Scan+Patterns",
-  "summary": "FPGA-based scan engine that drives galvo mirrors and a piezo stage for laser scanning microscopy. Computes kinematically correct raster trajectories in real time, with uni/bidirectional scanning, XY/XZ/YZ/XYZ planes, configurable laser line patterns, and 20-bit DAC output.",
-  "tags": ["FPGA", "Motion Control", "Laser Scanning", "DAC"],
-  "featured": true
-}
+  }
+
 ]
