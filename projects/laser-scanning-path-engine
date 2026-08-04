@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laser Scanning Path Engine | Anas Khalil</title>
+  <meta name="description" content="FPGA-based real-time scan engine for laser scanning microscopy, generating kinematically correct drive waveforms for galvo mirrors and piezo actuators with 20-bit precision.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg:        #FDFCFA;
+      --surface:   #F0EDE7;
+      --ink:       #1B1B1F;
+      --ink-muted: #6B7280;
+      --accent:    #2D5F8A;
+      --highlight: #B8860B;
+      --border:    #D8D4CC;
+      --radius:    6px;
+      --display:   'Space Grotesk', system-ui, sans-serif;
+      --body:      'Source Serif 4', Georgia, serif;
+      --mono:      'JetBrains Mono', 'Fira Code', monospace;
+      --article-w: 700px;
+      --gutter:    clamp(1.25rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body); font-size: 1.08rem;
+      line-height: 1.78; color: var(--ink); background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--highlight); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+    img { max-width: 100%; display: block; border-radius: var(--radius); }
+
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,252,250,.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--article-w); margin: 0 auto;
+      padding: .85rem var(--gutter);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--ink); letter-spacing: -.02em; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--display); font-size: .85rem; font-weight: 500;
+      color: var(--ink-muted); letter-spacing: .02em; text-transform: uppercase; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
+      background: var(--highlight); transform: scaleX(0); transition: transform .25s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .project-header {
+      max-width: var(--article-w); margin: 0 auto;
+      padding: clamp(2.5rem,7vw,5rem) var(--gutter) 0;
+    }
+    .project-back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: var(--display); font-size: .82rem; font-weight: 500;
+      color: var(--ink-muted); letter-spacing: .02em; text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .project-back:hover { color: var(--accent); }
+    .project-back svg { width: 14px; height: 14px; }
+
+    .project-header h1 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -.025em; margin-bottom: 1rem;
+    }
+    .project-meta {
+      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .tag {
+      font-family: var(--mono); font-size: .68rem; font-weight: 500;
+      letter-spacing: .03em; padding: .2rem .55rem; border-radius: 3px;
+      background: var(--surface); color: var(--ink-muted);
+    }
+
+    .project-summary {
+      font-size: 1.1rem; color: var(--ink-muted); line-height: 1.7;
+      padding-bottom: 1.75rem; border-bottom: 1px solid var(--border);
+    }
+
+    .project-body {
+      max-width: var(--article-w); margin: 0 auto;
+      padding: 2rem var(--gutter) clamp(3rem,6vw,5rem);
+    }
+    .project-body > * + * { margin-top: 1.35rem; }
+    .project-body h2 {
+      font-family: var(--display); font-size: 1.4rem;
+      font-weight: 600; letter-spacing: -.01em;
+      margin-top: 2.75rem; margin-bottom: .25rem;
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .project-body h3 {
+      font-family: var(--display); font-size: 1.15rem;
+      font-weight: 600; letter-spacing: -.01em;
+      margin-top: 2rem; margin-bottom: .15rem;
+    }
+    .project-body strong { font-weight: 600; }
+    .project-body em { font-style: italic; }
+    .project-body ul, .project-body ol { padding-left: 1.5rem; }
+    .project-body li { margin-top: .4rem; }
+    .project-body li::marker { color: var(--ink-muted); }
+    .project-body blockquote {
+      border-left: 3px solid var(--highlight);
+      padding: .75rem 0 .75rem 1.25rem; color: var(--ink-muted); font-style: italic;
+    }
+    .project-body code {
+      font-family: var(--mono); font-size: .88em;
+      background: var(--surface); padding: .15em .35em; border-radius: 3px;
+    }
+    .project-body pre {
+      background: #1B1B1F; color: #E2E0DC;
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      overflow-x: auto; font-size: .88rem; line-height: 1.6;
+    }
+    .project-body pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+    .project-body figure { margin: 2rem 0; }
+    .project-body figcaption {
+      font-family: var(--display); font-size: .8rem;
+      color: var(--ink-muted); margin-top: .5rem; text-align: center;
+    }
+    .project-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .75rem; margin: 2rem 0;
+    }
+    .gallery img {
+      aspect-ratio: 4/3; object-fit: cover; border: 1px solid var(--border);
+    }
+
+    .project-end {
+      max-width: var(--article-w); margin: 0 auto;
+      padding: 0 var(--gutter) clamp(3rem,6vw,5rem);
+    }
+    .project-end-rule { border: none; border-top: 1.5px solid var(--ink); margin-bottom: 2rem; }
+    .project-end-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .project-end-inner p {
+      font-family: var(--display); font-size: .88rem; color: var(--ink-muted);
+    }
+    .project-end-inner a {
+      font-family: var(--display); font-size: .8rem; font-weight: 500;
+      padding: .45rem 1rem; border-radius: var(--radius);
+      border: 1.5px solid var(--border); color: var(--ink-muted); transition: all .2s;
+    }
+    .project-end-inner a:hover { border-color: var(--accent); color: var(--accent); }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      max-width: var(--article-w); margin: 0 auto;
+      padding: 1.75rem var(--gutter) 2.25rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-text { font-family: var(--display); font-size: .82rem; color: var(--ink-muted); }
+    .footer-links { display: flex; gap: 1.25rem; list-style: none; }
+    .footer-links a { font-family: var(--display); font-size: .82rem; font-weight: 500; color: var(--ink-muted); }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 1rem; }
+      .project-end-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Anas Khalil</a>
+      <ul class="nav-links">
+        <li><a href="/#portfolio">Work</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="mailto:anas.khalil@outlook.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="project-header">
+    <a href="/#portfolio" class="project-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      All projects
+    </a>
+
+    <h1>Laser Scanning Path Engine</h1>
+
+    <div class="project-meta">
+      <span class="tag">FPGA</span>
+      <span class="tag">Motion Control</span>
+      <span class="tag">Laser Scanning Microscopy</span>
+    </div>
+
+  
+
+    <p class="project-summary">
+      An FPGA-based scan engine that drives galvo mirrors and a piezo stage
+      for laser scanning microscopy. It generates smooth, physically correct
+      drive waveforms using speed and acceleration equations, keeps the beam
+      at constant velocity during photon collection, and outputs through
+      20-bit DACs. Supports XY, XZ, YZ, and XYZ scanning, bidirectional
+      raster, multi-frame acquisition, and configurable laser line patterns.
+    </p>
+  </header>
+
+  <main class="project-body">
+
+    <h2>Background</h2>
+    <p>
+      Laser scanning microscopes (confocal, two-photon, STED) form images by
+      sweeping a focused beam across the sample. Galvo mirrors handle X and Y,
+      a MIPOS piezo handles Z. The problem is these are physical systems with
+      real inertia. If you just send a sawtooth waveform, the galvo overshoots
+      at the turnaround, rings, and takes time to settle. That means
+      non-uniform beam speed, which means distorted pixels.
+    </p>
+    <p>
+      Most controllers either throw away the edges of each scan line or live
+      with the artifacts. This engine takes a different route: instead of
+      correcting bad motion after the fact, it generates waveforms that the
+      hardware can actually follow cleanly.
+    </p>
+
+    <h2>How It Works</h2>
+    <p>
+      Each scan line is broken into phases: accelerate up to the target speed,
+      hold constant velocity while collecting photons, decelerate, turn
+      around, repeat. The position at every clock cycle is computed from basic
+      kinematics. A "pixel valid" flag goes high only during the
+      constant-velocity window, so downstream detection hardware knows
+      exactly when to count photons and when to ignore.
+    </p>
+
+    <figure>
+      <img src="https://placehold.co/700x400/E8E4DC/6B7280?text=Velocity+Profile+Diagram"
+           alt="Trapezoidal velocity profile showing acceleration, constant velocity, deceleration, and turnaround phases">
+      <figcaption>Trapezoidal velocity profile for a single scan line. Photons are collected only during the constant-velocity segment.</figcaption>
+    </figure>
+
+    <p>
+      The engine supports both <strong>unidirectional</strong> scanning (collect
+      on the forward sweep, flyback, repeat) and <strong>bidirectional</strong>
+      scanning (collect in both directions, pixel clock reverses on the return
+      pass). Bidirectional mode nearly doubles the frame rate.
+    </p>
+
+    <h3>Scan Geometry and Axes</h3>
+    <p>
+      Any physical axis can be assigned as the fast or slow axis, so the same
+      engine handles XY, XZ, YZ, and full XYZ volumetric scans. Each axis has
+      its own scaling and offset registers, so you can reposition or resize
+      the scan field on the fly. Multi-frame acquisition (Z-stacks,
+      time-lapse) is built in.
+    </p>
+
+    <h3>Line Pattern Sets</h3>
+    <p>
+      For multi-color imaging you often need different laser lines on
+      different scan lines. The engine has a programmable pattern set where
+      you define which laser is active on each line, how many times it
+      repeats, and in what order. The pattern loops automatically across
+      the frame.
+    </p>
+
+    <h3>FPGA and DAC</h3>
+    <p>
+      Everything runs on an FPGA for deterministic, cycle-accurate timing.
+      The host loads all parameters (speed, acceleration, pixel dwell, line
+      count, axis assignments, pattern sets, etc.) into registers, hits
+      start, and the FPGA takes over. It computes positions every clock
+      cycle then streams them to 20-bit DACs. The 20-bit resolution gives
+      positioning granularity well below the diffraction limit, so the DAC
+      is never the bottleneck.
+    </p>
+
+    <pre><code>-- Simplified scan state machine (VHDL-style pseudocode)
+process(clk)
+begin
+  if rising_edge(clk) then
+    case scan_phase is
+      when ACCEL =>
+        velocity <= velocity + acceleration;
+        position <= position + velocity;
+        if velocity >= target_speed then
+          scan_phase <= CONST_VEL;
+        end if;
+
+      when CONST_VEL =>
+        position <= position + target_speed;
+        pixel_valid <= '1';
+        if pixel_count >= pixels_per_line then
+          scan_phase <= DECEL;
+          pixel_valid <= '0';
+        end if;
+
+      when DECEL =>
+        velocity <= velocity - acceleration;
+        position <= position + velocity;
+        if velocity <= 0 then
+          scan_phase <= TURN;
+        end if;
+
+      when TURN =>
+        -- reverse for bidirectional, or flyback
+        scan_phase <= ACCEL;
+    end case;
+  end if;
+end process;</code></pre>
+
+    <h3>GUI</h3>
+    <p>
+      Everything is controllable from a host-side GUI: pixel/line counts,
+      speed, acceleration, axis roles, scaling, offsets, scan direction,
+      frame count, and pattern sets. Parameters propagate to the FPGA
+      registers live, so you can tweak the scan field or swap laser
+      patterns without reprogramming the FPGA.
+    </p>
+
+    <h2>Results</h2>
+    <p>
+      The engine produces clean rasters across all scan
+      planes. Line pattern sets have been validated with
+      multi-laser setups. The system is integrated into an active
+      microscopy setup at MPI-CBG and used for routine imaging.
+    </p>
+
+    <div class="gallery">
+      <img src="https://placehold.co/400x300/E8E4DC/6B7280?text=XY+Raster+Scan" alt="XY raster scan output">
+      <img src="https://placehold.co/400x300/E8E4DC/6B7280?text=XZ+Cross-Section" alt="XZ cross-section scan">
+      <img src="https://placehold.co/400x300/E8E4DC/6B7280?text=Waveform+Capture" alt="DAC output waveform captured on oscilloscope">
+    </div>
+
+
+  </main>
+
+  <aside class="project-end">
+    <hr class="project-end-rule">
+    <div class="project-end-inner">
+      <p>Built at MPI-CBG, Dresden</p>
+      <a href="https://github.com/AnasASK" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-text">&copy; 2026 Anas Khalil</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/AnasASK" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:anas.khalil@outlook.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
