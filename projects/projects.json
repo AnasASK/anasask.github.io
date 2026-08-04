@@ -5,7 +5,7 @@
     "thumbnail": "https://placehold.co/800x450/111827/5B98D4?text=STED+Reconstruction",
     "summary": "End-to-end acquisition and reconstruction pipeline for STED microscopy. Reads raw detector signals, handles photon counting and time-gating, and assembles super-resolution images in real time during acquisition.",
     "tags": ["Python", "C++", "Signal Processing", "STED"],
-    "featured": true
+    "featured": false
   },
   {
     "title": "FPGA Scan & Detection Controller",
@@ -23,12 +23,12 @@
     "tags": ["CAD", "Optics", "Mechanical Design", "Zemax"],
     "featured": false
   },
-  {
-    "title": "Scanning Path Engine",
-    "url": "/projects/scanning-path-engine.html",
-    "thumbnail": "https://placehold.co/640x360/111827/6BCB77?text=Scan+Patterns",
-    "summary": "Generates and optimizes galvo mirror scan patterns — raster, spiral, and adaptive ROI modes — driven by the FPGA controller with real-time position feedback and dose management.",
-    "tags": ["FPGA", "Control Systems", "Galvo", "Python"],
-    "featured": false
-  }
+ {
+  "title": "Laser Scanning Path Engine",
+  "url": "/projects/laser-scanning-path-engine.html",
+  "thumbnail": "https://placehold.co/640x360/111827/6BCB77?text=Scan+Patterns",
+  "summary": "FPGA-based scan engine that drives galvo mirrors and a piezo stage for laser scanning microscopy. Computes kinematically correct raster trajectories in real time, with uni/bidirectional scanning, XY/XZ/YZ/XYZ planes, configurable laser line patterns, and 20-bit DAC output.",
+  "tags": ["FPGA", "Motion Control", "Laser Scanning", "DAC"],
+  "featured": true
+}
 ]
