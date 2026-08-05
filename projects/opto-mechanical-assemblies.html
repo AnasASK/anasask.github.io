@@ -152,7 +152,8 @@
     .assembly-card img {
       width: 100%;
       aspect-ratio: 16/10;
-      object-fit: cover;
+      object-fit: contain;
+      background: var(--surface);
       border-radius: 0;
     }
     .assembly-card-body {
@@ -237,13 +238,11 @@
   <main class="project-body">
 
     <!-- ── Assembly 1: MPPC Holder ── -->
-    <h2>Gas-Insulated MPPC Holder</h2>
-
     <div class="assembly-card">
       <img src="/projects/res/opto-mechanical/mppcholderexploded.png"
            alt="Gas-insulated MPPC holder assembly with heat sink and sealed argon chamber">
       <div class="assembly-card-body">
-        <h3>Cooled MPPC in an Argon Atmosphere</h3>
+        <h3>Gas-Insulated MPPC Holder</h3>
         <p class="assembly-subtitle">Thermal Management &bull; Gas Insulation</p>
         <p>
           We cool our MPPC (multi-pixel photon counter) with a thermoelectric
@@ -258,13 +257,11 @@
     </div>
 
     <!-- ── Assembly 2: Scan Engine Block ── -->
-    <h2>Laser Scan Engine Assembly</h2>
-
     <div class="assembly-card">
       <img src="/projects/res/opto-mechanical/laserscanengine.png"
            alt="Laser scan engine block with MEMS mirror, lenses, and PSD feedback">
       <div class="assembly-card-body">
-        <h3>MEMS-Based Beam Steering with Closed-Loop Control</h3>
+        <h3>Laser Scan Engine Assembly</h3>
         <p class="assembly-subtitle">Beam Scanning &bull; PID Control &bull; FPGA</p>
         <p>
           This assembly packs a MEMS mirror, lenses, mirrors, and all
@@ -278,13 +275,11 @@
     </div>
 
     <!-- ── Assembly 3: Motorized Iris ── -->
-    <h2>Motorized Iris</h2>
-
     <div class="assembly-card">
       <img src="/projects/res/opto-mechanical/motorizediris.png"
            alt="Motorized iris assembly with servo motor and geared iris mechanism">
       <div class="assembly-card-body">
-        <h3>Automated Pinhole for STED Microscopy</h3>
+        <h3>Motorized Iris</h3>
         <p class="assembly-subtitle">Automation &bull; STED &bull; Airy Unit Control</p>
         <p>
           The pinhole in a STED system is used to block out-of-focus light and stray background noise from reaching the detector.
