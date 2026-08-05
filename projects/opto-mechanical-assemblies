@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Opto-Mechanical Assemblies | Anas Khalil</title>
+  <meta name="description" content="Custom opto-mechanical assemblies for advanced microscopy: a gas-insulated MPPC holder, a MEMS-based laser scan engine, and a motorized iris for STED pinhole automation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg:        #FDFCFA;
+      --surface:   #F0EDE7;
+      --ink:       #1B1B1F;
+      --ink-muted: #6B7280;
+      --accent:    #2D5F8A;
+      --highlight: #B8860B;
+      --border:    #D8D4CC;
+      --radius:    6px;
+      --display:   'Space Grotesk', system-ui, sans-serif;
+      --body:      'Source Serif 4', Georgia, serif;
+      --mono:      'JetBrains Mono', 'Fira Code', monospace;
+      --max-w:     1120px;
+      --article-w: 800px;
+      --gutter:    clamp(1.25rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body); font-size: 1.05rem;
+      line-height: 1.78; color: var(--ink); background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--highlight); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+    img { max-width: 100%; display: block; border-radius: var(--radius); }
+
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,252,250,.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: .85rem var(--gutter);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--ink); letter-spacing: -.02em; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--display); font-size: .85rem; font-weight: 500;
+      color: var(--ink-muted); letter-spacing: .02em; text-transform: uppercase; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
+      background: var(--highlight); transform: scaleX(0); transition: transform .25s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .project-header {
+      max-width: var(--article-w); margin: 0 auto;
+      padding: clamp(2.5rem,7vw,5rem) var(--gutter) 0;
+    }
+    .project-back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: var(--display); font-size: .82rem; font-weight: 500;
+      color: var(--ink-muted); letter-spacing: .02em; text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .project-back:hover { color: var(--accent); }
+    .project-back svg { width: 14px; height: 14px; }
+
+    .project-header h1 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -.025em; margin-bottom: 1rem;
+    }
+    .project-meta {
+      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .tag {
+      font-family: var(--mono); font-size: .68rem; font-weight: 500;
+      letter-spacing: .03em; padding: .2rem .55rem; border-radius: 3px;
+      background: var(--surface); color: var(--ink-muted);
+    }
+
+    .project-summary {
+      font-size: 1.1rem; color: var(--ink-muted); line-height: 1.7;
+      padding-bottom: 1.75rem; border-bottom: 1px solid var(--border);
+    }
+
+    .project-body {
+      max-width: var(--article-w); margin: 0 auto;
+      padding: 2rem var(--gutter) clamp(3rem,6vw,5rem);
+    }
+    .project-body > * + * { margin-top: 1.35rem; }
+    .project-body h2 {
+      font-family: var(--display); font-size: 1.4rem;
+      font-weight: 600; letter-spacing: -.01em;
+      margin-top: 2.75rem; margin-bottom: .25rem;
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .project-body h2:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .project-body h3 {
+      font-family: var(--display); font-size: 1.15rem;
+      font-weight: 600; letter-spacing: -.01em;
+      margin-top: 2rem; margin-bottom: .15rem;
+    }
+    .project-body strong { font-weight: 600; }
+    .project-body em { font-style: italic; }
+    .project-body ul, .project-body ol { padding-left: 1.5rem; }
+    .project-body li { margin-top: .4rem; }
+    .project-body li::marker { color: var(--ink-muted); }
+    .project-body blockquote {
+      border-left: 3px solid var(--highlight);
+      padding: .75rem 0 .75rem 1.25rem; color: var(--ink-muted); font-style: italic;
+    }
+    .project-body code {
+      font-family: var(--mono); font-size: .88em;
+      background: var(--surface); padding: .15em .35em; border-radius: 3px;
+    }
+    .project-body pre {
+      background: #1B1B1F; color: #E2E0DC;
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      overflow-x: auto; font-size: .88rem; line-height: 1.6;
+    }
+    .project-body pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+    .project-body figure { margin: 2rem 0; }
+    .project-body figcaption {
+      font-family: var(--display); font-size: .8rem;
+      color: var(--ink-muted); margin-top: .5rem; text-align: center;
+    }
+    .project-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    .assembly-card {
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .assembly-card img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 0;
+    }
+    .assembly-card-body {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+    .assembly-card-body h3 {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      margin: 0 0 .15rem;
+    }
+    .assembly-card-body .assembly-subtitle {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--ink-muted);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      margin-bottom: .85rem;
+    }
+    .assembly-card-body p {
+      margin-top: 0;
+    }
+
+    .site-footer {
+      border-top: 1.5px solid var(--ink);
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 2rem var(--gutter) 2.5rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-text { font-family: var(--display); font-size: .82rem; color: var(--ink-muted); }
+    .footer-links { display: flex; gap: 1.25rem; list-style: none; }
+    .footer-links a { font-family: var(--display); font-size: .82rem; font-weight: 500; color: var(--ink-muted); }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 1rem; }
+      .assembly-card-body { padding: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Anas Khalil</a>
+      <ul class="nav-links">
+        <li><a href="/#portfolio">Work</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="mailto:anas.khalil@outlook.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="project-header">
+    <a href="/#portfolio" class="project-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      All projects
+    </a>
+
+    <h1>Custom Opto-Mechanical Assemblies</h1>
+
+    <div class="project-meta">
+      <span class="tag">Mechanical Design</span>
+      <span class="tag">Optics</span>
+      <span class="tag">Microscopy</span>
+    </div>
+
+    <p class="project-summary">
+      These are some of the custom opto-mechanical assemblies I designed
+      as part of my work at MPI CBG.
+    </p>
+  </header>
+
+  <main class="project-body">
+
+    <!-- ── Assembly 1: MPPC Holder ── -->
+    <h2>Gas-Insulated MPPC Holder</h2>
+
+    <div class="assembly-card">
+      <img src="/projects/res/opto-mechanical/mppcholderexploded.png"
+           alt="Gas-insulated MPPC holder assembly with heat sink and sealed argon chamber">
+      <div class="assembly-card-body">
+        <h3>Cooled MPPC in an Argon Atmosphere</h3>
+        <p class="assembly-subtitle">Thermal Management &bull; Gas Insulation</p>
+        <p>
+          We cool our MPPC (multi-pixel photon counter) with a thermoelectric
+          cooler to bring down dark counts, but that introduces a problem:
+          when the sensor gets cold enough, moisture from the air condenses
+          on it. This holder is designed around that constraint. The hot side
+          of the TEC sits against a heat sink to get rid of waste heat, and
+          the MPPC with its PCB is enclosed in a sealed chamber that we fill
+          with dry argon.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Assembly 2: Scan Engine Block ── -->
+    <h2>Laser Scan Engine Assembly</h2>
+
+    <div class="assembly-card">
+      <img src="/projects/res/opto-mechanical/laserscanengine.png"
+           alt="Laser scan engine block with MEMS mirror, lenses, and PSD feedback">
+      <div class="assembly-card-body">
+        <h3>MEMS-Based Beam Steering with Closed-Loop Control</h3>
+        <p class="assembly-subtitle">Beam Scanning &bull; PID Control &bull; FPGA</p>
+        <p>
+          This assembly packs a MEMS mirror, lenses, mirrors, and all
+          their holders into one compact assembly. A MEMS mirror does the
+          scanning, and a position-sensitive detector (PSD) picks up where the
+          mirror actually is in real time. That PSD signal feeds into a PID
+          control loop on an FPGA, so we're always correcting based on the
+          true mirror angle rather. This design took lots of planning and simulation to get the angles and dimensions correctly.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Assembly 3: Motorized Iris ── -->
+    <h2>Motorized Iris</h2>
+
+    <div class="assembly-card">
+      <img src="/projects/res/opto-mechanical/motorizediris.png"
+           alt="Motorized iris assembly with servo motor and geared iris mechanism">
+      <div class="assembly-card-body">
+        <h3>Automated Pinhole for STED Microscopy</h3>
+        <p class="assembly-subtitle">Automation &bull; STED &bull; Airy Unit Control</p>
+        <p>
+          The pinhole in a STED system is used to block out-of-focus light and stray background noise from reaching the detector.
+          We often need to test different Airy unit sizes during alignment
+          or characterization. Normally you would swap fixed pinholes by hand,
+          which is a quite slow. This assembly uses
+          a servo motor geared to an iris diaphragm, so the aperture can be
+          set to any size from software. It makes it easy to sweep through
+          Airy unit ranges automatically and keeps things consistent between
+          measurements.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-text">&copy; 2026 Anas Khalil</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/AnasASK" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:anas.khalil@outlook.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
