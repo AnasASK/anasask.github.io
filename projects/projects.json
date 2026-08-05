@@ -26,12 +26,12 @@
     "featured": false
   },
   {
-    "title": "FPGA Scan & Detection Controller",
-    "url": "/projects/fpga-scan-controller.html",
-    "thumbnail": "https://placehold.co/640x360/111827/D49B3A?text=FPGA+Controller",
-    "summary": "Real-time FPGA control system for microscope scanning paths, laser pulse detection, and beam enable logic. Sub-microsecond timing for synchronizing excitation and depletion lasers.",
-    "tags": ["VHDL", "FPGA", "Timing", "Digital Design"],
-    "featured": false
-  }
+  "title": "Custom PCB Designs",
+  "url": "/projects/custom-pcbs.html",
+  "thumbnail": "/projects/res/custom-pcbs/pf.png",
+  "summary": "Custom PCBs for a laser microscopy setup: a buffered pulse fanout board, and a multi-rail power supply.",
+  "tags": ["PCB Design", "Electronics", "High-Speed Signals"],
+  "featured": false
+}
 
 ]
