@@ -222,13 +222,19 @@
   
 
     <p class="project-summary">
-      An FPGA-based scan engine that drives galvo mirrors and a piezo stage
+      I designed FPGA-based scan engine that drives galvo mirrors and a piezo stage
       for laser scanning microscopy. It generates smooth, physically correct
       drive waveforms using speed and acceleration equations, keeps the beam
       at constant velocity during photon collection, and outputs through
       20-bit DACs. Supports XY, XZ, YZ, and XYZ scanning, bidirectional
       raster, multi-frame acquisition, and configurable laser line patterns.
     </p>
+
+    <figure>
+      <img src="/projects/res/laser-scanning-path-engine/FPGA.jpg"
+           alt="The Electronics Setup: An FPGA (XEM8320) and 3 DACs (AD5791).">
+      <figcaption>The Electronics Setup: An FPGA (XEM8320) and 3 DAC Boards (AD5791).</figcaption>
+    </figure>
   </header>
 
   <main class="project-body">
@@ -237,13 +243,13 @@
     <p>
       Laser scanning microscopes (confocal, two-photon, STED) form images by
       sweeping a focused beam across the sample. Galvo mirrors handle X and Y,
-      a MIPOS piezo handles Z. The problem is these are physical systems with
+      a MIPOS piezo stage handles Z. The problem is these are physical systems with
       real inertia. If you just send a sawtooth waveform, the galvo overshoots
       at the turnaround, rings, and takes time to settle. That means
       non-uniform beam speed, which means distorted pixels.
     </p>
     <p>
-      Most controllers either throw away the edges of each scan line or live
+      Many controllers either throw away the edges of each scan line or live
       with the artifacts. This engine takes a different route: instead of
       correcting bad motion after the fact, it generates waveforms that the
       hardware can actually follow cleanly.
@@ -268,8 +274,7 @@
     <p>
       The engine supports both <strong>unidirectional</strong> scanning (collect
       on the forward sweep, flyback, repeat) and <strong>bidirectional</strong>
-      scanning (collect in both directions, pixel clock reverses on the return
-      pass). Bidirectional mode nearly doubles the frame rate.
+      scanning (collect in both directions).
     </p>
 
     <h3>Scan Geometry and Axes</h3>
