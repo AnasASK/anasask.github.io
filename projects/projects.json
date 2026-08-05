@@ -11,7 +11,7 @@
   {
     "title": "Custom Opto-Mechanical Assemblies",
     "url": "/projects/opto-mechanical-assemblies.html",
-    "thumbnail": "/projects/res/opt-mechanical/mppcholderexploded.png",
+    "thumbnail": "/projects/res/opto-mechanical/mppcholderexploded.png",
     "summary": "A collection of custom opto-mechanical assemblies for microscopy: a gas-insulated MPPC holder, a laser scan engine block with PSD feedback, and a motorized iris for automated pinhole sizing",
     "tags": ["CAD", "Optics", "Mechanical Design", "Quadoa"],
     "featured": false
